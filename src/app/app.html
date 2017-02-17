@@ -1,0 +1,31 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/card-madison.png">
+      </ion-avatar>
+       <h2 *ngIf="!isUserAuthenticated">Login/SignUp
+         <span (click)="gotoLoginPage()" style="float:right;margin:0">
+                <ion-icon name="arrow-forward" no-margin></ion-icon>
+       </span>
+      </h2>
+       <h2 *ngIf="isUserAuthenticated">Ramesh Kumar
+         <span (click)="gotoProfilePage()" style="float:right;margin:0">
+                <ion-icon name="arrow-forward"  no-margin></ion-icon>
+       </span>
+      </h2>
+    </ion-item>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon [name]="p.name"></ion-icon>
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
