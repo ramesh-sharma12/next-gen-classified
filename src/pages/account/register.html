@@ -9,6 +9,15 @@
             <ion-item>
                 <ion-label floating>Username</ion-label>
                 <ion-input type="text" formControlName="UserName" name="username" required></ion-input>
+                <div *ngIf="INVALID_USER_NAME">
+                   
+                    <p ion-text color="danger">"User already exists"</p>
+                </div>
+                 {{INVALID_USER_NAME}}
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Full Name</ion-label>
+                <ion-input type="email" formControlName="FullName" name="fullName" required></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label floating>Email</ion-label>
@@ -27,7 +36,7 @@
             <button ion-button color="primary" block [disabled]="!newform.form.valid">Register</button>
         </div>
     </form>
-    <div *ngIf="isAccountCreated"> 
+    <div *ngIf="isAccountCreated">
         <div>Your account created succesfully</div>
     </div>
 

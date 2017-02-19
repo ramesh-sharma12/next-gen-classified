@@ -31,6 +31,7 @@ export class AccountService implements IAccountService {
         user.UserName = data.UserName;
         user.Passward = data.Password;
         user.EmailId = data.EmailId;
+        user.Profile.FullName = data.FUllName;
         user.Token = this.generateToken().token;
         user.TokenValidity = this.generateToken().expries;
 
@@ -106,9 +107,12 @@ export class AccountService implements IAccountService {
             if (err) throw err;
 
             var result = new Result();
-            if (user) {
+            if (user && user.length) {
                 if (user[0].Passward == login.Password) {
                     result.Message = "Authenticated Succesfully";
+                    result.Content = {
+                        FullName : user[0].Profile.FullName
+                    };
                     result.Success = true;
                 } else {
                     result.Message = "Invalid Passward";

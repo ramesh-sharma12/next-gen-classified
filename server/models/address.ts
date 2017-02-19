@@ -1,7 +1,7 @@
 import {ObjectID} from 'mongodb';
 import {BaseEntity} from './baseEntity';
 
-export class IAddress extends BaseEntity
+export class Address extends BaseEntity
 {
     AddressLine1: string;
     AddressLine2: string;
@@ -12,5 +12,4 @@ export class IAddress extends BaseEntity
     IsPermanetAddress: boolean;
     StateId: string;
     CounntryId: number; 
-    UserId: ObjectID;
 }
