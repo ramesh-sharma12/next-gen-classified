@@ -31,9 +31,11 @@ export class AccountService implements IAccountService {
         user.UserName = data.UserName;
         user.Passward = data.Password;
         user.EmailId = data.EmailId;
-        user.Profile.FullName = data.FUllName;
         user.Token = this.generateToken().token;
         user.TokenValidity = this.generateToken().expries;
+        if (user.Profile) {
+            user.Profile.FullName = data.FullName;
+        }
 
         this.repository.create(user, (err, item) => {
             var result = new Result();
@@ -100,7 +102,7 @@ export class AccountService implements IAccountService {
     public getUserInfo(id: string, callback: (errr: Error, item: UserInfo) => any) { }
     public changePassword(id: string, data: any, callback: (errr: Error, item: Result) => any) { }
     public forgotPassword(id: string, callback: (errr: Error, item: Result) => any) { }
-    
+
     public authenticate(login: Login, callback: (item: Result) => any) {
 
         this.repository.get({ UserName: login.UserName }, (err, user) => {
@@ -111,7 +113,7 @@ export class AccountService implements IAccountService {
                 if (user[0].Passward == login.Password) {
                     result.Message = "Authenticated Succesfully";
                     result.Content = {
-                        FullName : user[0].Profile.FullName
+                        FullName: user[0].Profile.FullName
                     };
                     result.Success = true;
                 } else {
@@ -125,7 +127,7 @@ export class AccountService implements IAccountService {
 
             callback(result);
         })
-    } 
+    }
 
     public logout(id: string, callback: (errr: Error, item: Result) => any) { }
 

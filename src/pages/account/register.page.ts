@@ -41,12 +41,14 @@ export class RegisterPage {
 
 
     checkUsername(control: FormControl): any {
+        this.INVALID_USER_NAME = false;
+
         return new Promise(resolve => {
             this.userService.getByUserName(control.value).subscribe(
                 data => {
                     if (typeof data[0] !== "undefined") {
                         if (data.length) {
-                            resolve({ "INVALID_USER_NAME": true });
+                          this.INVALID_USER_NAME = true;
                         } else {
                             resolve(null);
                         }

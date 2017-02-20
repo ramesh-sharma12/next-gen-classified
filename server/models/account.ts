@@ -1,7 +1,7 @@
 export class Register{
     public UserName : string;
     public EmailId : string;
-    public FUllName : string;
+    public FullName : string;
     public Password : string;
     public ConfirmPassword : string;
 }
